@@ -30,7 +30,7 @@ def load_quantized(model_name):
         return
 
     use_safetensors = pt_path.suffix == '.safetensors'
-    if not (path_to_model / "quantize_config.json").exists():
+    if (path_to_model / "quantize_config.json").exists():
         quantize_config = BaseQuantizeConfig(
             bits=bits if (bits := shared.args.wbits) > 0 else 4,
             group_size=gs if (gs := shared.args.groupsize) > 0 else -1,
